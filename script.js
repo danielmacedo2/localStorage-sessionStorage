@@ -38,3 +38,26 @@ sessionStorage.setItem("number", 123);
 
 const n = sessionStorage.getItem("number");
 console.log(n);
+
+// 10 - salvar objeto
+
+const person = {
+  name: "Daniel",
+  age: 19,
+  job: "Programmer",
+  nationality: "Brazilian",
+}
+
+// localStorage.setItem("person", person)
+
+localStorage.setItem("person", JSON.stringify(person))
+
+const getPerson = localStorage.getItem("person");
+
+console.log(getPerson);
+
+const personObject = JSON.parse(getPerson); // parse para transformar em objeto denovo
+
+console.log(typeof personObject)
+
+console.log(personObject.job);
