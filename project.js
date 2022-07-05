@@ -2,8 +2,28 @@ const nameForm = document.querySelector("#name-form");
 const welcomeContainer = document.querySelector("#welcome");
 const logoutBtn = document.querySelector("#logout");
 
+function checkUser() {
+    const userName = localStorage.getItem("name");
+
+    
+    if(userName) {
+        nameForm.style.display = "none";    
+        welcomeContainer.style.display = "block";
+
+        const userNameElement = document.querySelector("#username");
+
+        userNameElement.textContent = userName;        
+    } else {
+        nameForm.style.display = "block";
+        welcomeContainer.style.display = "none";
+
+    }
+    
+}
+
+
 nameForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
   const nameInput = document.querySelector("#name");
 
@@ -14,16 +34,11 @@ nameForm.addEventListener("submit", (e) => {
   checkUser();
 });
 
-function checkUser() {
-    const userName = document.querySelector("#name")
+logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("name");
 
-    if(userName) {
-        nameForm.style.display = "none";
+    checkUser();
+})
 
-        welcomeContainer.style.display = "block";
-    } else {
-        window.alert("Por favor insira seu nome, no campo abaixo!");
-    }
-
-
-}
+// Application start
+checkUser();
